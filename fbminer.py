@@ -20,7 +20,7 @@ class Collector(object):
         # browser instance
         self.browser = webdriver.Firefox()
 
-    def strip(string):
+    def strip(self, string):
         """Helping function to remove all non alphanumeric characters"""
         words = string.split()
         words = [word for word in words if "#" not in word]
@@ -52,7 +52,7 @@ class Collector(object):
                 "[data-ad-preview='message'] p")
 
             for p in paragraphs:
-                text = strip(p.text)
+                text = self.strip(p.text)
                 corpus.write(text)
 
     def collect(self):

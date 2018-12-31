@@ -11,14 +11,13 @@ parser.add_argument("-g", '--generate', action="store",
 
 args = parser.parse_args()
 
-
-posts_file = open("corpus.txt", "r", encoding='utf-8')
-posts = posts_file.read()
-# generate model
-post_model = markovify.Text(posts)
-for i in range(args.g):
-    post = post_model.make_sentence()
-    if post == None:
-        pass
-    else:
-        print(post)
+with open("corpus.txt", "r") as f:
+    posts = f.read()
+    # generate model
+    model = markovify.Text(posts)
+    for i in range(args.g):
+        post = model.make_sentence()
+        if post is None:
+            pass
+        else:
+            print(post)
